@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="Include\Core\Game.h" />
+    <ClInclude Include="Include\DataStructures\Stack.h" />
+    <ClInclude Include="Include\Globals.h" />
+    <ClInclude Include="Include\Core\GameTIme.h" />
+    <ClInclude Include="Include\Render\Renderer.h" />
+    <ClInclude Include="Include\Core\Display.h" />
+    <ClInclude Include="Include\Math\Vector2.h" />
+    <ClInclude Include="Include\Math\MathHelper.h" />
+    <ClInclude Include="Include\Math\Vector3.h" />
+    <ClInclude Include="Include\Math\Matrix4.h" />
+    <ClInclude Include="Include\Math\Quaternion.h" />
+    <ClInclude Include="Include\Input\KeyboardState.h" />
+    <ClInclude Include="Include\Input\Mouse.h" />
+    <ClInclude Include="Include\Input\Keyboard.h" />
+    <ClInclude Include="Include\Input\InputController.h" />
+    <ClInclude Include="Include\Factories\ShapeFactory.h" />
+    <ClInclude Include="Include\Math\Matrix3.h" />
+    <ClInclude Include="Include\Util\File.h" />
+    <ClInclude Include="Include\Util\stb_image.h" />
+    <ClInclude Include="Include\Render\Vertex.h" />
+    <ClInclude Include="Include\Render\ShapeData.h" />
+    <ClInclude Include="Include\Render\Mesh.h" />
+    <ClInclude Include="Include\Render\Shader.h" />
+    <ClInclude Include="Include\Math\Math.h" />
+    <ClInclude Include="Include\Launcher.h" />
+    <ClInclude Include="Include\Math\Transform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Include\Core\GameTime.cpp" />
+    <ClCompile Include="Include\Core\Game.cpp" />
+    <ClCompile Include="Include\Render\Renderer.cpp" />
+    <ClCompile Include="Include\Core\Display.cpp" />
+    <ClCompile Include="Include\Input\Mouse.cpp" />
+    <ClCompile Include="Include\Input\Keyboard.cpp" />
+    <ClCompile Include="Include\Input\KeyboardState.cpp" />
+    <ClCompile Include="Include\Input\InputController.cpp" />
+    <ClCompile Include="Include\Factories\ShapeFactory.cpp" />
+    <ClCompile Include="Include\Util\stb_image.c" />
+    <ClCompile Include="Include\Render\Mesh.cpp" />
+    <ClCompile Include="Include\Render\Shader.cpp" />
+    <ClCompile Include="Include\Launcher.cpp" />
+    <ClCompile Include="Include\Math\Transform.cpp" />
+  </ItemGroup>
+</Project>

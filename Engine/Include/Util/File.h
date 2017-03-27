@@ -1,0 +1,66 @@
+#pragma once
+#include <string>
+#include<iostream>
+#include<fstream>
+#include <assert.h>
+#include <vector>
+
+using namespace std;
+
+class File
+{
+public:
+	inline static string LoadFile(const std::string& filepath)
+	{
+		string sResult = "";
+		string sCurrLine;
+
+		ifstream file;
+	   
+		file.open(filepath);
+
+		if (file.is_open())
+		{
+			while (file.good())
+			{
+				getline(file, sCurrLine);
+				sResult.append(sCurrLine + "\n");
+			}
+		}
+		else
+		{
+			std::cerr << "File load exception! Unable to open file at " + filepath << std::endl;
+			throw "File load exception! Unable to open file at " + filepath;
+		}
+
+
+		return sResult;
+	}
+
+	inline static bool GetBuffer(string filePath, vector<unsigned char>& buffer) {
+		ifstream file(filePath, ios::binary);
+		
+		if (file.fail()) {
+			perror(filePath.c_str());
+			return false;
+		}
+
+		//Move file pointer to the end of file
+		file.seekg(0, ios::end);
+		//Get file size by calling tellg. tellg will return the index position of the file header. (bytes moved)
+		int fileSize = file.tellg();
+		//Reset file pointer back to the begining of the file
+		file.seekg(0, ios::beg);
+		//If the file contains any header information, remove it (unlikely to be an issue)
+		fileSize -= file.tellg();
+		//Resize buffer to file size
+		buffer.resize(fileSize);
+		//Fill the buffer
+		file.read((char*)&buffer[0], fileSize);
+		//Close the file
+		file.close();
+
+		return true;
+	}
+};
+
