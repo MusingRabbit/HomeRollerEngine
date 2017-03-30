@@ -11,6 +11,7 @@
 #include "Render\Mesh.h"
 #include "Render\Shader.h"
 #include "Math\Transform.h"
+#include "Import\ObjLoader.h"
 
 namespace Engine {
 	class EXPORT Game {

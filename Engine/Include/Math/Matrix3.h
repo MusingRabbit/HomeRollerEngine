@@ -17,7 +17,7 @@ namespace Engine {
 			Matrix3 result;
 			for (int x = 0; x < iCount; x++) {
 				for (int y = 0; y < iCount; y++) {
-					result.data[x][y] = (x == y) ? 1 : 0;
+					result.data[x][y] = (x == y) ? 1.0f : 0.0f;
 				}
 			}
 			return result;

@@ -2,12 +2,13 @@
 
 #include "MathHelper.h"
 #include "Vector3.h"
+#include <Globals.h>
 
 namespace Engine {
 
 	struct Matrix4
 	{
-		static const int iCount = 4;
+		static const uint iCount = 4;
 		float m[iCount][iCount];
 
 		Matrix4()
@@ -16,9 +17,9 @@ namespace Engine {
 		}
 
 		inline void InitIdentity() {
-			for (int x = 0; x < iCount; x++) {
-				for (int y = 0; y < iCount; y++) {
-					m[x][y] = (x == y) ? 1 : 0;
+			for (uint x = 0; x < iCount; x++) {
+				for (uint y = 0; y < iCount; y++) {
+					m[x][y] = (x == y) ? 1.0f : 0.0f;
 				}
 			}
 		}
@@ -69,9 +70,9 @@ namespace Engine {
 			Matrix4	rz;
 			Matrix4 r;
 
-			x = ToRadians(x);
-			y = ToRadians(y);
-			z = ToRadians(z);
+			x = (float)ToRadians(x);
+			y = (float)ToRadians(y);
+			z = (float)ToRadians(z);
 
 			rx.m[0][0] = 1;			rx.m[0][1] = 0;			rx.m[0][2] = 0;			rx.m[0][3] = 0;
 			rx.m[1][0] = 0;			rx.m[1][1] = cosf(x);	rx.m[1][2] = -sinf(x);	rx.m[1][3] = 0;

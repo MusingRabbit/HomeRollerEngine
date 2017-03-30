@@ -23,15 +23,20 @@ namespace Engine {
 			Vector2(0.0f,0.0f)					//uvCoord
 		};
 
-		GLushort  iArr[]{ 0,1,2 };
+		GLuint  iArr[]{ 0,1,2 };
 
-		result.numVertices = GET_ARRAY_SIZE(t1Verts);
-		result.numIndices = GET_ARRAY_SIZE(iArr);
+		size_t sizeVerts = GET_ARRAY_SIZE(t1Verts);
+		size_t sizeIndic = GET_ARRAY_SIZE(iArr);
 
-		result.vertices = new Vertex[result.numVertices];
-		result.indices = new GLuint[result.numIndices];
-		memcpy(result.vertices, t1Verts, sizeof(t1Verts));
-		memcpy(result.indices, iArr, sizeof(iArr));
+		result.vertices.reserve(sizeVerts);
+		result.indices.reserve(sizeIndic);
+
+		for (int i = 0; i < sizeVerts; i++) {
+			result.vertices.push_back(t1Verts[i]);
+		}
+		for (int i = 0; i < sizeIndic; i++) {
+			result.indices.push_back(iArr[i]);
+		}
 
 		return result;
 	}
@@ -39,7 +44,7 @@ namespace Engine {
 	ShapeData ShapeFactory::MakeArrow()
 	{
 		ShapeData result;
-		Vertex stackVerts[] =
+		Vertex t1Verts[] =
 		{
 			// Top side of arrow head
 			Vector3(+0.00f, +0.25f, -0.25f),         // 0
@@ -213,7 +218,7 @@ namespace Engine {
 			Vector3(+0.00f, +0.00f, +1.00f)         // Normal
 		};
 
-		GLushort stackIndices[] = {
+		GLuint iArr[] = {
 			0, 1, 2, // Top
 			0, 2, 3,
 			4, 6, 5, // Bottom
@@ -236,14 +241,19 @@ namespace Engine {
 			36, 38, 39,
 		};
 
-		result.numVertices = GET_ARRAY_SIZE(stackVerts);
-		result.numIndices = GET_ARRAY_SIZE(stackIndices);
 
-		result.indices = new GLuint[result.numIndices];
-		result.vertices = new Vertex[result.numVertices];
+		size_t sizeVerts = GET_ARRAY_SIZE(t1Verts);
+		size_t sizeIndic = GET_ARRAY_SIZE(iArr);
 
-		memcpy(result.vertices, stackVerts, sizeof(stackVerts));
-		memcpy(result.indices, stackIndices, sizeof(stackIndices));
+		result.vertices.reserve(sizeVerts);
+		result.indices.reserve(sizeIndic);
+
+		for (int i = 0; i < sizeVerts; i++) {
+			result.vertices.push_back(t1Verts[i]);
+		}
+		for (int i = 0; i < sizeIndic; i++) {
+			result.indices.push_back(iArr[i]);
+		}
 
 		return result;
 	}
@@ -252,7 +262,7 @@ namespace Engine {
 
 		ShapeData result;
 
-		Vertex cVerts[] = {
+		Vertex t1Verts[] = {
 			//Top
 			Vector3(-1.0f, +1.0f, +1.0f), // 0
 			Vector3(+1.0f, +0.0f, +0.0f), // Colour
@@ -356,7 +366,7 @@ namespace Engine {
 			Vector3(+0.0f, -1.0f, +0.0f),  // Normal
 		};
 
-		GLushort sIndices[] = {
+		GLuint iArr[] = {
 			0,1,2,
 			0,2,3,		//	Top
 			4,5,6,
@@ -371,13 +381,18 @@ namespace Engine {
 			20,23,22	//	Bottom
 		};
 
-		result.numVertices = GET_ARRAY_SIZE(cVerts);
-		result.numIndices = GET_ARRAY_SIZE(sIndices);
+		size_t sizeVerts = GET_ARRAY_SIZE(t1Verts);
+		size_t sizeIndic = GET_ARRAY_SIZE(iArr);
 
-		result.vertices = new Vertex[result.numVertices];
-		result.indices = new GLuint[result.numIndices];
-		memcpy(result.vertices, cVerts, sizeof(cVerts));
-		memcpy(result.indices, sIndices, sizeof(sIndices));
+		result.vertices.reserve(sizeVerts);
+		result.indices.reserve(sizeIndic);
+
+		for (int i = 0; i < sizeVerts; i++) {
+			result.vertices.push_back(t1Verts[i]);
+		}
+		for (int i = 0; i < sizeIndic; i++) {
+			result.indices.push_back(iArr[i]);
+		}
 
 		return result;
 	}
@@ -387,18 +402,19 @@ namespace Engine {
 		ShapeData result;
 		int iHalf = dimensions / 2;
 		int iCount = 0;
-		result.numVertices = dimensions * dimensions;
-		result.numIndices = (((dimensions - 1) * (dimensions - 1)) * 2) * 3;
-		result.vertices = new Vertex[result.numVertices];
-		result.indices = new GLuint[result.numIndices];
+		size_t sizeVerts = dimensions * dimensions;
+		size_t sizeIndic = (((dimensions - 1) * (dimensions - 1)) * 2) * 3;
 
-		for (int i = 0; i < dimensions; i++)
+		result.vertices.reserve(sizeVerts);
+		result.indices.reserve(sizeIndic);
+
+		for (uint i = 0; i < dimensions; i++)
 		{
-			for (int j = 0; j < dimensions; j++)
+			for (uint j = 0; j < dimensions; j++)
 			{
 				Vertex& cVert = result.vertices[i * dimensions + j];
-				cVert.position.x = j - iHalf;
-				cVert.position.z = i - iHalf;
+				cVert.position.x = (float)j - iHalf;
+				cVert.position.z = (float)i - iHalf;
 				cVert.position.y = 0;
 				cVert.normal = Vector3(0.0f, 1.0f, 0.0f);
 				float fColour = (i % 2 == j % 2) ? 1.0f : 0.1f;
@@ -416,7 +432,7 @@ namespace Engine {
 			}
 		}
 
-		assert(iCount == result.numIndices);
+		assert(iCount == result.indices.size());
 
 		return result;
 	}
@@ -424,10 +440,10 @@ namespace Engine {
 	ShapeData ShapeFactory::GenerateNormalLines(const ShapeData & data)
 	{
 		ShapeData result;
-		result.numVertices = data.numVertices * 2;
-		result.vertices = new Vertex[result.numVertices];
 
-		for (int i = 0; i < result.numVertices; i++)
+		result.vertices.reserve(result.vertices.size() * 2);
+
+		for (size_t i = 0; i < result.vertices.size(); i++)
 		{
 			uint vertIndex = i * 2;
 			const Vertex& vSource = data.vertices[i];
@@ -438,11 +454,10 @@ namespace Engine {
 			v1.colour = v2.colour = Vector3(1.0f, 1.0f, 1.0f);
 		}
 
-		result.numIndices = result.numVertices;
-		result.indices = new GLuint[result.numIndices];
+		result.indices.clear();
 
-		for (int i = 0; i < result.numIndices; i++)
-			result.indices[i] = i;
+		for (size_t i = 0; i < result.vertices.size(); i++)
+			result.indices.push_back(i);
 
 		return result;
 	}

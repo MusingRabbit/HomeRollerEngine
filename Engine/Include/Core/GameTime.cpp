@@ -21,13 +21,13 @@ float Engine::GameTime::GetDeltaTime() const
 
 float Engine::GameTime::GetFrameRate() const
 {
-	return 1.0f / m_dDeltaTime;
+	return 1.0f / (float)m_dDeltaTime;
 }
 
 void Engine::GameTime::Reset()
 {
 	m_ulCurrTime = SDL_GetPerformanceCounter();
-	m_dCountsPerSecond = SDL_GetPerformanceFrequency();
+	m_dCountsPerSecond = (double)SDL_GetPerformanceFrequency();
 	m_dDeltaTime = -1;
 	m_ulBaseTime = m_ulCurrTime;
 	m_ulPausedTime = 0;
@@ -88,7 +88,7 @@ Uint64 Engine::GameTime::GetTicks()
 void Engine::GameTime::UpdateTickers()
 {
 	m_ulCurrTime = SDL_GetPerformanceCounter();
-	m_dDeltaTime = (m_ulCurrTime - m_ulPrevTime);
+	m_dDeltaTime = (double)(m_ulCurrTime - m_ulPrevTime);
 	m_dDeltaTime = m_bStopped ? m_dDeltaTime * m_dCountsPerSecond : m_dDeltaTime / m_dCountsPerSecond;
 	m_dDeltaTime = m_dDeltaTime < 0.0 ? 0.0 : m_dDeltaTime;
 	m_ulPrevTime = m_ulCurrTime;

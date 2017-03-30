@@ -28,7 +28,7 @@ namespace Engine {
 	void Mesh::Load(const ShapeData data)
 	{
 		m_shapeData = data;
-		m_drawCount = data.numIndices;
+		m_drawCount = data.indices.size();
 		BufferGeometry();
 	}
 
@@ -54,12 +54,12 @@ namespace Engine {
 
 	GLuint Mesh::GetDrawCount()
 	{
-		return m_shapeData.numIndices;
+		return m_shapeData.indices.size();
 	}
 
 	GLuint* Mesh::GetIndices()
 	{
-		return m_shapeData.indices;
+		return &m_shapeData.indices[0];
 	}
 
 	void Mesh::BufferGeometry()

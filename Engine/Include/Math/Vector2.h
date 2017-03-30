@@ -38,7 +38,10 @@ namespace Engine {
 			double cos = std::cos(radii);
 			double sin = std::sin(radii);
 
-			return Vector2((x * cos - y * sin), (x * sin + y * cos));
+			float x = static_cast<float>(x * cos - y * sin);
+			float y = static_cast<float>(x * sin + y * cos);
+
+			return Vector2(x,y);
 		}
 
 		float Dot(const Vector2& r) {

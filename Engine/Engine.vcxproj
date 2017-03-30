@@ -45,6 +45,8 @@
     <ClInclude Include="Include\Util\File.h" />
     <ClInclude Include="Include\Util\stb_image.h" />
     <ClInclude Include="Include\Math\Transform.h" />
+    <ClInclude Include="Include\Util\StringHelper.h" />
+    <ClInclude Include="Include\Import\ObjLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Include\Core\Game.cpp" />
@@ -61,6 +63,7 @@
     <ClCompile Include="Include\Render\Shader.cpp" />
     <ClCompile Include="Include\Util\stb_image.c" />
     <ClCompile Include="Include\Math\Transform.cpp" />
+    <ClCompile Include="Include\Import\ObjLoader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

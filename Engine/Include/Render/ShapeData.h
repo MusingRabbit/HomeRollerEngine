@@ -2,34 +2,33 @@
 #include "Globals.h"
 #include "Vertex.h"
 #include <glew.h>
+#include <vector>
+
+using namespace std;
 
 namespace Engine {
 
-	struct EXPORT ShapeData
+	struct ShapeData
 	{
-		ShapeData() :
-			vertices(0), numVertices(0), indices(0), numIndices(0)
+		vector<Vertex> vertices;
+		vector<GLuint> indices;
+
+		ShapeData() 
 		{
 
 		}
 
-		Vertex* vertices;
-		GLuint* indices;
-		GLuint numVertices;
-		GLuint numIndices;
-
 		GLsizeiptr GetVertexBufferSize() const {
-			return numVertices * sizeof(Vertex);
+			return vertices.size() * sizeof(Vertex);
 		}
 
 		GLsizeiptr GetIndexBufferSize() const {
-			return numIndices * sizeof(GLushort);
+			return indices.size() * sizeof(GLuint);
 		}
 
 		void clear() {
-			delete[] indices;
-			delete[] vertices;
-			numIndices = numVertices = 0;
+			indices.clear();
+			vertices.clear();
 		}
 	};
 }

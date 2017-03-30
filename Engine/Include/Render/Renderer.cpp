@@ -59,7 +59,7 @@ namespace Engine {
 		Clear();
 	}
 
-	std::string Renderer::GetOpenGLVersion()
+	char const * Renderer::GetOpenGLVersion()
 	{
 		return reinterpret_cast<char const *>(glGetString(GL_VERSION));
 	}

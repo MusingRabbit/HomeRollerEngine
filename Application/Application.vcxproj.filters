@@ -4,11 +4,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\Shaders\basicShaderAmbientLight.vert" />
-    <None Include="res\Shaders\translationShader.frag" />
-    <None Include="res\Shaders\translationShader.vert" />
-    <None Include="res\Shaders\basicShader.frag" />
-    <None Include="res\Shaders\basicShader.vert" />
-    <None Include="res\Shaders\basicShaderAmbientLight.frag" />
+    <None Include="res\shaders\basicShaderAmbientLight.frag" />
+    <None Include="res\shaders\basicShaderAmbientLight.vert" />
+    <None Include="res\shaders\basicShader.frag" />
+    <None Include="res\shaders\basicShader.vert" />
   </ItemGroup>
 </Project>

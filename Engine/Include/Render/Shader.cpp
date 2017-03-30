@@ -18,9 +18,8 @@ namespace Engine {
 
 	void Shader::LoadFileData(const string& fileName) {
 		const GLchar* charArr[1];
-		string filePath = fileName;
-		string vertexShader = File::LoadFile("res\\Shaders\\" + filePath + ".vert");
-		string fragmentShader = File::LoadFile("res\\Shaders\\" + filePath + ".frag");
+		string vertexShader = File::LoadFile("res\\shaders\\" + fileName + ".vert");
+		string fragmentShader = File::LoadFile("res\\shaders\\" + fileName + ".frag");
 
 		m_shaders[VERTEX_SHADER] = glCreateShader(GL_VERTEX_SHADER);
 		m_shaders[FRAGMENT_SHADER] = glCreateShader(GL_FRAGMENT_SHADER);

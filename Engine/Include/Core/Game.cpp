@@ -30,11 +30,13 @@ namespace Engine {
 		m_input.SetKey("down", SDLK_c);
 
 		ShapeData shape = ShapeFactory::MakeCube();
+		ShapeData testShape = ObjLoader::LoadFile("starwars\\star_destroyer");
+
 		m_mesh.Load(shape);
 		
-		//m_transform.SetPosition(0, 0, 0);
+		m_transform.SetPosition(0, 0, 0);
 
-		m_shader.LoadFileData("translationShader");
+		m_shader.LoadFileData("testShader");
 	}
 
 	void Game::Run()
@@ -58,7 +60,7 @@ namespace Engine {
 
 	void Game::Update()
 	{
-		float tmpi = 0.1;
+		float tmpi = 0.1f;
 		while (m_bRunning) {
 			m_input.Update();
 

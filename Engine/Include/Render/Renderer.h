@@ -19,7 +19,7 @@ namespace Engine {
 		void SetColour(float r, float g, float b, float a);
 		void Clear();
 		void Draw();
-		std::string GetOpenGLVersion();
+		char const * GetOpenGLVersion();
 	};
 
 }

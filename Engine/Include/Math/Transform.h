@@ -15,7 +15,7 @@ namespace Engine {
 		void SetRotation(const Vector3 & value);
 		void SetScale(float x, float y, float z);
 		void SetScale(const Vector3 & value);
-		Vector3& GetPosition();
+		Vector3 & GetPosition();
 		Vector3 & GetRotation();
 		Vector3 & GetScale();
 		Matrix4 GetMatrix();
