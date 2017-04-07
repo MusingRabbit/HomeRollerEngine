@@ -33,6 +33,7 @@ namespace Engine {
 		{
 			x = r.x;
 			y = r.y;
+			z = r.z;
 		}
 
 		inline float Length() {

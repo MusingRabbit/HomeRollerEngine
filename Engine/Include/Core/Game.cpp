@@ -29,12 +29,12 @@ namespace Engine {
 		m_input.SetKey("up", SDLK_SPACE);
 		m_input.SetKey("down", SDLK_c);
 
-		ShapeData shape = ShapeFactory::MakeCube();
-		ShapeData testShape = ObjLoader::LoadFile("starwars\\star_destroyer");
+		ShapeData shape = ShapeFactory::MakeTestCube();
+		ShapeData testShape = ObjLoader::LoadFile("box");
 
 		m_mesh.Load(shape);
 		
-		m_transform.SetPosition(0, 0, 0);
+		//m_transform.SetPosition(0, 0, 0);
 
 		m_shader.LoadFileData("testShader");
 	}
@@ -60,16 +60,18 @@ namespace Engine {
 
 	void Game::Update()
 	{
-		float tmpi = 0.1f;
+		float tmp = 0;
 		while (m_bRunning) {
+			std::cout << "Frame Rate : " << m_gameTime.GetFrameRate() << std::endl;
 			m_input.Update();
 
-			float tmpSin = sinf(m_gameTime.GetToalElapsedGameTime());
-			
-		   m_transform.SetScale(0.5, 0.5, 0.5);
-		   m_transform.SetRotation(35.0f, tmpSin * 120, 0.0f);
-
 			if (m_gameTime.Tick()) {
+				tmp = (m_gameTime.GetToalElapsedGameTime());
+				float tmpSin = sinf(tmp);
+				m_transform.SetPosition(tmpSin, 0.0f, 5.0f);
+				m_transform.SetScale(0.3, 0.3, 0.3);
+				m_transform.SetRotation(tmpSin * 35.0f, tmpSin * 180, tmpSin * 180);
+
 				Draw();
 
 				if (m_input.isButtonHit("forward")) {
@@ -86,10 +88,13 @@ namespace Engine {
 		m_display->SwapBuffer();
 		m_renderer.Draw();
 		m_shader.Bind();
-		m_shader.SetSharderMatrixUniform("transform", m_transform.GetMatrix());
+		Matrix4 mtxModel = m_transform.GetMatrix();
+		Matrix4 mtxProjection = Matrix4::CreatePerspectiveMatrix(70.0f, m_display->GetAspectRatio(), 0.1f, 1000);
+		Matrix4 mtxModelProjection = mtxProjection * mtxModel;
+		m_shader.SetSharderMatrixUniform("transform", mtxModelProjection);
 		m_renderer.DrawMesh(m_mesh);
 		m_shader.UnBind();
-		assert(glGetError() == GL_NO_ERROR);
+		//assert(glGetError() == GL_NO_ERROR);
 	}
 
 	void Game::PollSDLEvents()

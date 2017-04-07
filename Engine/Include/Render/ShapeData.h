@@ -11,7 +11,7 @@ namespace Engine {
 	struct ShapeData
 	{
 		vector<Vertex> vertices;
-		vector<GLuint> indices;
+		vector<GLushort> indices;
 
 		ShapeData() 
 		{

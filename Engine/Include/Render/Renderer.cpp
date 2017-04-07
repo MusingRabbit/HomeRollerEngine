@@ -31,7 +31,7 @@ namespace Engine {
 	{
 		shader.Bind();
 		glBindVertexArray(model.GetVertexBufferId());
-		glDrawElements(GL_TRIANGLES, model.GetDrawCount(), GL_UNSIGNED_SHORT, 0);
+		glDrawElements(GL_TRIANGLES, model.GetDrawCount(), GL_UNSIGNED_INT, 0);
 		glBindVertexArray(0);
 		shader.UnBind();
 		assert(glGetError() == GL_NO_ERROR);
@@ -42,7 +42,7 @@ namespace Engine {
 		glBindVertexArray(model.GetVertexBufferId());
 		glDrawElements(GL_TRIANGLES, model.GetDrawCount(), GL_UNSIGNED_SHORT, 0);
 		glBindVertexArray(0);
-		assert(glGetError() == GL_NO_ERROR);
+		//assert(glGetError() == GL_NO_ERROR);
 	}
 
 

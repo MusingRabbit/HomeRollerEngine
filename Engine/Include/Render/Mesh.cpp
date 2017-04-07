@@ -57,7 +57,7 @@ namespace Engine {
 		return m_shapeData.indices.size();
 	}
 
-	GLuint* Mesh::GetIndices()
+	GLushort* Mesh::GetIndices()
 	{
 		return &m_shapeData.indices[0];
 	}

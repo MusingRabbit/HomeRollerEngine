@@ -25,9 +25,10 @@ namespace Engine {
 		float GetAspectRatio();
 
 	private :
-		std::string m_sTitle;
-		int m_iWidth, m_iHeight;
+		int m_iWidth;
+		int m_iHeight;
 		bool m_bClosing;
+		std::string m_sTitle;
 		SDL_Window* m_window;
 		SDL_GLContext m_glContext;
 	};

@@ -59,8 +59,6 @@ public:
 		uint size = end - begin;
 		file.seekg(0);
 
-		out.reserve(size);
-
 		if (file.is_open())
 		{
 			while (file.good())

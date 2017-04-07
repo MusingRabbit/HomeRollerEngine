@@ -29,6 +29,7 @@
     <ClInclude Include="Include\Math\Transform.h" />
     <ClInclude Include="Include\Util\StringHelper.h" />
     <ClInclude Include="Include\Import\ObjLoader.h" />
+    <ClInclude Include="Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Include\Core\GameTime.cpp" />
@@ -46,5 +47,6 @@
     <ClCompile Include="Include\Launcher.cpp" />
     <ClCompile Include="Include\Math\Transform.cpp" />
     <ClCompile Include="Include\Import\ObjLoader.cpp" />
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
 </Project>

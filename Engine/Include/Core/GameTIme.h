@@ -25,6 +25,7 @@ namespace Engine {
 		Uint64 m_ulStopTime;
 		Uint64 m_ulPrevTime;
 		Uint64 m_ulCurrTime;
+		Uint64 m_ulStartTime;
 
 		Uint64 m_ulFrameCounter;
 

@@ -83,7 +83,7 @@ namespace Engine {
 
 	void Shader::SetSharderMatrixUniform(const string name, const Matrix4& value)
 	{
-		glUniformMatrix4fv(GetUniformLocation(name.c_str()), 1, GL_TRUE, &value.m[0][0]);
+		glUniformMatrix4fv(GetUniformLocation(name.c_str()), 1, GL_FALSE, &value.m[0][0]);
 	}
 
 	void Shader::SetShaderFloatUniform(const string name, const GLfloat value)

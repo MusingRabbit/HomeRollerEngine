@@ -21,7 +21,7 @@ namespace Engine {
 		void Clear();
 		GLuint GetVertexBufferId();
 		GLuint GetDrawCount();
-		GLuint* GetIndices();
+		GLushort* GetIndices();
 
 	private:
 		void BufferGeometry();

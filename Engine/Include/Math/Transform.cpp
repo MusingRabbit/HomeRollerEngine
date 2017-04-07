@@ -57,7 +57,7 @@ namespace Engine {
 		Matrix4 mtxTranslate = Matrix4::CreateTranslationMatrix(m_position);
 		Matrix4 mtxRotate = Matrix4::CreateRotationMatrix(m_rotation);
 		Matrix4 mtxScale = Matrix4::CreateScaleMatrix(m_scale);
-		Matrix4 result = (mtxTranslate * mtxRotate * mtxScale);
+		Matrix4 result = mtxTranslate.Mul(mtxRotate.Mul(mtxScale));
 		return result;
 	}
 }

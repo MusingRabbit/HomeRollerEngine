@@ -8,6 +8,6 @@ out vec4 vertColour;
 uniform mat4 transform;
 
 void main(){
-    vertColour = vec4(colour,1.0f);
+    vertColour = vec4(clamp(position,0.0,1.0),1.0f);
     gl_Position =  vec4(position,1.0) * transform;
 }

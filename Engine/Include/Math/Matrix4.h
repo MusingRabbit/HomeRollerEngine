@@ -64,6 +64,21 @@ namespace Engine {
 			return CreateRotationMatrix(value.x, value.y, value.z);
 		}
 
+		static Matrix4 CreatePerspectiveMatrix(float fov, float aspect, float zNear, float zFar) {
+			Matrix4 r;
+
+			float tanThetaOver2 =(float)tanf(ToRadians(fov / 2));
+			float zRange = zNear - zFar;
+			float zTotal = zNear + zFar;
+
+			r.m[0][0] = 1.0f / (tanThetaOver2 * aspect);		r.m[0][1] = 0;						r.m[0][2] = 0;					r.m[0][3] = 0;
+			r.m[1][0] = 0;										r.m[1][1] = 1.0f / tanThetaOver2;	r.m[1][2] = 0;					r.m[1][3] = 0;
+			r.m[2][0] = 0;										r.m[2][1] = 0;						r.m[2][2] = -zTotal/zRange;	    r.m[2][3] = 2 * zFar * zNear / zRange;
+			r.m[3][0] = 0;										r.m[3][1] = 0;						r.m[3][2] = 1;					r.m[3][3] = 0;
+
+			return r;
+		}
+
 		static Matrix4 CreateRotationMatrix(float x, float y, float z) {
 			Matrix4	rx;
 			Matrix4	ry;
@@ -79,9 +94,9 @@ namespace Engine {
 			rx.m[2][0] = 0;			rx.m[2][1] = sinf(x);	rx.m[2][2] = cosf(x);	rx.m[2][3] = 0;
 			rx.m[3][0] = 0;			rx.m[3][1] = 0;			rx.m[3][2] = 0;			rx.m[3][3] = 1;
 
-			ry.m[0][0] = cosf(y);	ry.m[0][1] = 0;			ry.m[0][2] = sinf(y);	ry.m[0][3] = 0;
+			ry.m[0][0] = cosf(y);	ry.m[0][1] = 0;			ry.m[0][2] = -sinf(y);	ry.m[0][3] = 0;
 			ry.m[1][0] = 0;			ry.m[1][1] = 1;			ry.m[1][2] = 0;			ry.m[1][3] = 0;
-			ry.m[2][0] = -sinf(y);	ry.m[2][1] = 0;			ry.m[2][2] = cosf(y);	ry.m[2][3] = 0;
+			ry.m[2][0] = sinf(y);	ry.m[2][1] = 0;			ry.m[2][2] = cosf(y);	ry.m[2][3] = 0;
 			ry.m[3][0] = 0;			ry.m[3][1] = 0;			ry.m[3][2] = 0;			ry.m[3][3] = 1;
 
 			rz.m[0][0] = cosf(z);	rz.m[0][1] = -sinf(z);	rz.m[0][2] = 0;			rz.m[0][3] = 0;

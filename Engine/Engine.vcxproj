@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Include\Math\Math.h" />
     <ClInclude Include="Include\Render\Shader.h" />
     <ClInclude Include="Include\Render\ShapeData.h" />
@@ -49,6 +50,7 @@
     <ClInclude Include="Include\Import\ObjLoader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Include\Core\Game.cpp" />
     <ClCompile Include="Include\Factories\ShapeFactory.cpp" />
     <ClCompile Include="Include\Input\InputController.cpp" />

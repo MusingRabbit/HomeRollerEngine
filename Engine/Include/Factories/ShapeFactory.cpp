@@ -23,7 +23,7 @@ namespace Engine {
 			Vector2(0.0f,0.0f)					//uvCoord
 		};
 
-		GLuint  iArr[]{ 0,1,2 };
+		GLushort  iArr[]{ 0,1,2 };
 
 		size_t sizeVerts = GET_ARRAY_SIZE(t1Verts);
 		size_t sizeIndic = GET_ARRAY_SIZE(iArr);
@@ -218,7 +218,7 @@ namespace Engine {
 			Vector3(+0.00f, +0.00f, +1.00f)         // Normal
 		};
 
-		GLuint iArr[] = {
+		GLushort iArr[] = {
 			0, 1, 2, // Top
 			0, 2, 3,
 			4, 6, 5, // Bottom
@@ -250,6 +250,75 @@ namespace Engine {
 
 		for (int i = 0; i < sizeVerts; i++) {
 			result.vertices.push_back(t1Verts[i]);
+		}
+		for (int i = 0; i < sizeIndic; i++) {
+			result.indices.push_back(iArr[i]);
+		}
+
+		return result;
+	}
+
+	ShapeData ShapeFactory::MakeTestCube() {
+		ShapeData result;
+
+		Vertex tVerts[]{
+			Vector3(1.0f, -1.0f, -1.0f), // 0
+			Vector3(+1.0f, +0.0f, +0.0f), // Colour
+			Vector3(0.0f,	1.0f,	0.0f), // normal
+			Vector2(0.0f, 0.0f),
+			Vector3(1.0f,  -1.0f,  1.0f), // 1
+			Vector3(+0.0f, +1.0f, +0.0f), // Colour
+			Vector3(0.0f,	1.0f,	0.0f), // normal
+			Vector2(0.0f, 0.0f),
+			Vector3(-1.0f, -1.0f,  1.0f), // 2
+			Vector3(+0.0f, +0.0f, +1.0f), // Colour
+			Vector3(0.0f,	1.0f,  0.0f), // normal
+			Vector2(0.0f, 0.0f),
+			Vector3(-1.0f, -1.0f, -1.0f), // 3
+			Vector3(+1.0f, +1.0f, +1.0f), // Colour
+			Vector3(0.0f,	1.0f,  0.0f), // normal
+			Vector2(0.0f, 0.0f),
+			Vector3(1.0f, 1.0f, -1.0f), // 4
+			Vector3(+1.0f, +0.0f, +1.0f), // Colour
+			Vector3(0.0f,	1.0f,  -1.0f), // normal
+			Vector2(0.0f, 0.0f),
+			Vector3(1.0f, 1.0f, 1.0f), // 5
+			Vector3(+1.0f, +0.0f, +1.0f), // Colour
+			Vector3(0.0f,	1.0f,  -1.0f), // normal
+			Vector2(0.0f, 0.0f),
+			Vector3(-1.0f, 1.0f, 1.0f), // 6
+			Vector3(+0.8f, +0.6f, +0.4f), // Colour
+			Vector3(0.0f,	1.0f,  -1.0f), // normal
+			Vector2(0.0f, 0.0f),
+			Vector3(-1.0f, 1.0f, -1.0f), // 7
+			Vector3(+0.3f, +1.0f, +0.5f), // Colour
+			Vector3(0.0f,	1.0f,  -1.0f), // normal
+			Vector2(0.0f, 0.0f),
+		};
+
+		GLushort iArr[] = {
+			1,3,0,
+			7,5,4,		
+			4,1,0,	
+			5,2,1,
+			2,7,3,		
+			0,7,4,
+			1,2,3,	
+			7,6,5,
+			4,5,1,	
+			5,6,2,
+			2,6,7,
+			0,3,7	
+		};
+
+		size_t sizeVerts = GET_ARRAY_SIZE(tVerts);
+		size_t sizeIndic = GET_ARRAY_SIZE(iArr);
+
+		result.vertices.reserve(sizeVerts);
+		result.indices.reserve(sizeIndic);
+
+		for (int i = 0; i < sizeVerts; i++) {
+			result.vertices.push_back(tVerts[i]);
 		}
 		for (int i = 0; i < sizeIndic; i++) {
 			result.indices.push_back(iArr[i]);
@@ -366,7 +435,7 @@ namespace Engine {
 			Vector3(+0.0f, -1.0f, +0.0f),  // Normal
 		};
 
-		GLuint iArr[] = {
+		GLushort iArr[] = {
 			0,1,2,
 			0,2,3,		//	Top
 			4,5,6,

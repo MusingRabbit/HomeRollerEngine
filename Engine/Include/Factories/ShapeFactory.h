@@ -19,6 +19,7 @@ namespace Engine {
 		static ShapeData MakeTriangle();
 		static ShapeData MakeCube();
 		static ShapeData MakeArrow();
+		static ShapeData MakeTestCube();
 		static ShapeData MakePlane(uint dimensions = 10);
 		static ShapeData GenerateNormalLines(const ShapeData& data);
 	};

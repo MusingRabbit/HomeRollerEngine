@@ -11,7 +11,7 @@ Engine::GameTime::~GameTime()
 
 float Engine::GameTime::GetToalElapsedGameTime() const
 {
-	return (float)(SDL_GetPerformanceCounter() / m_dCountsPerSecond);
+	return (float)(m_ulCurrTime / m_dCountsPerSecond);
 }
 
 float Engine::GameTime::GetDeltaTime() const
@@ -26,7 +26,8 @@ float Engine::GameTime::GetFrameRate() const
 
 void Engine::GameTime::Reset()
 {
-	m_ulCurrTime = SDL_GetPerformanceCounter();
+	m_ulStartTime = SDL_GetPerformanceCounter();
+	m_ulCurrTime = 0;
 	m_dCountsPerSecond = (double)SDL_GetPerformanceFrequency();
 	m_dDeltaTime = -1;
 	m_ulBaseTime = m_ulCurrTime;
@@ -41,7 +42,7 @@ void Engine::GameTime::Reset()
 
 void Engine::GameTime::Start()
 {
-	m_ulCurrTime = SDL_GetPerformanceCounter();
+	m_ulCurrTime = SDL_GetPerformanceCounter() - m_ulStartTime;
 
 	if (m_bStopped)
 	{
@@ -87,7 +88,7 @@ Uint64 Engine::GameTime::GetTicks()
 
 void Engine::GameTime::UpdateTickers()
 {
-	m_ulCurrTime = SDL_GetPerformanceCounter();
+	m_ulCurrTime = SDL_GetPerformanceCounter() - m_ulStartTime;
 	m_dDeltaTime = (double)(m_ulCurrTime - m_ulPrevTime);
 	m_dDeltaTime = m_bStopped ? m_dDeltaTime * m_dCountsPerSecond : m_dDeltaTime / m_dCountsPerSecond;
 	m_dDeltaTime = m_dDeltaTime < 0.0 ? 0.0 : m_dDeltaTime;
