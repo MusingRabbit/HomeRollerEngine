@@ -2,10 +2,7 @@
 #  define EXPORT __declspec(dllexport)
 
 #include "Render\ShapeData.h"
-#include "Math\Vector2.h"
-#include "Math\Vector3.h"
-#include "Math\Matrix3.h"
-#include "Math\Matrix4.h"
+#include "Math\Math.h"
 #include <vector>
 
 #include <assert.h>

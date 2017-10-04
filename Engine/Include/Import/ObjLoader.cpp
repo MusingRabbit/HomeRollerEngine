@@ -71,10 +71,14 @@ namespace Engine {
 			vector<string> el;
 			StringHelper::SplitString(tokens[i], '/', el);
 
-			for (int j = 0; j < el.size(); j++) {
-				string s = el[j];
-				int value = s == "" ? -1 :stoi(el[j])-1;
-				result.data[i-1].push_back(value);
+			result.data[i - 1].push_back(stoi(el[0] == "" ? "0" : el[0]) - 1);
+			result.data[i - 1].push_back(stoi(el[1] == "" ? "0" : el[1]) - 1);
+			result.data[i - 1].push_back(stoi(el[2] == "" ? "0" : el[2]) - 1);
+
+			if (el.size() > 3) {
+				result.data[i - 1].push_back(stoi(el[0] == "" ? "0" : el[0]) - 1);
+				result.data[i - 1].push_back(stoi(el[1] == "" ? "0" : el[1]) - 1);
+				result.data[i - 1].push_back(stoi(el[4] == "" ? "0" : el[4]) - 1);
 			}
 		}
 

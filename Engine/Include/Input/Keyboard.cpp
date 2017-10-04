@@ -32,7 +32,7 @@ namespace Engine {
 		return _INSTANCE;
 	}
 
-	void Keyboard::ProcessSDLEvent(const SDL_Event& e)
+	void Keyboard::ProcessSDLEvent(SDL_Event& e)
 	{
 		if (e.type == SDL_KEYDOWN)
 		{

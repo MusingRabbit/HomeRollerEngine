@@ -9,18 +9,15 @@ namespace Engine {
 		m_pKBState = nullptr;
 
 		m_pKeyboard = Keyboard::Instance();
-		m_pMouse = Mouse::Instance();
+		m_mouse = Mouse::Instance();
 	}
 
 
 	InputController::~InputController()
 	{
 		m_actionMap.clear();
-		m_pMouse->clear();
-		delete m_pMouse;
 		delete m_pKeyboard;
 		m_pKeyboard = nullptr;
-		m_pMouse = nullptr;
 	}
 
 	void InputController::Update()
@@ -32,12 +29,12 @@ namespace Engine {
 	}
 
 	Vector2 InputController::GetMousePos() {
-		return m_pMouse->getPos();
+		return m_mouse.GetPosition();
 	}
 
-	Mouse* InputController::GetMouse()
+	Mouse& InputController::GetMouse()
 	{
-		return m_pMouse;
+		return m_mouse;
 	}
 
 	bool InputController::isButtonDown(string ActionName)
@@ -62,8 +59,9 @@ namespace Engine {
 		return true;
 	}
 
-	void InputController::ProcessSDLEvent(const SDL_Event & e)
+	void InputController::ProcessSDLEvent(SDL_Event& e)
 	{
 		m_pKeyboard->ProcessSDLEvent(e);
+		m_mouse.ProcessSDLEvent(e);
 	}
 }

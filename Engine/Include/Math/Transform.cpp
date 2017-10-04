@@ -2,13 +2,11 @@
 
 namespace Engine {
 
-	Transform::Transform()
-	{
+	Transform::Transform(){
 		SetScale(1.0f, 1.0f, 1.0f);
 	}
 
-	Transform::~Transform()
-	{
+	Transform::~Transform(){
 	}
 
 	void Transform::SetPosition(float x, float y, float z) {
@@ -24,8 +22,7 @@ namespace Engine {
 		return SetRotation(Vector3(x, y, z));
 	}
 
-	void Transform::SetRotation(const Vector3 & value)
-	{
+	void Transform::SetRotation(const Vector3 & value) {
 		m_rotation = value;
 	}
 
@@ -33,23 +30,19 @@ namespace Engine {
 		return SetScale(Vector3(x, y, z));
 	}
 
-	void Transform::SetScale(const Vector3 & value)
-	{
+	void Transform::SetScale(const Vector3 & value) {
 		m_scale = value;
 	}
 
-
-
-	Vector3& Transform::GetPosition()
-	{
+	Vector3& Transform::GetPosition(){
 		return m_position;
 	}
-	Vector3& Transform::GetRotation()
-	{
+
+	Vector3& Transform::GetRotation(){
 		return m_rotation;
 	}
-	Vector3& Transform::GetScale()
-	{
+
+	Vector3& Transform::GetScale(){
 		return m_scale;
 	}
 
@@ -57,7 +50,7 @@ namespace Engine {
 		Matrix4 mtxTranslate = Matrix4::CreateTranslationMatrix(m_position);
 		Matrix4 mtxRotate = Matrix4::CreateRotationMatrix(m_rotation);
 		Matrix4 mtxScale = Matrix4::CreateScaleMatrix(m_scale);
-		Matrix4 result = mtxTranslate.Mul(mtxRotate.Mul(mtxScale));
+		Matrix4 result = mtxTranslate * mtxRotate * mtxScale;
 		return result;
 	}
 }

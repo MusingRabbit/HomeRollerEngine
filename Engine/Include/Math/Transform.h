@@ -1,9 +1,11 @@
 #pragma once
-#include "Math\Math.h"
+#include "Vector3.h"
+#include "Matrix4.h"
+#include "Globals.h"
 
 namespace Engine {
 
-	class Transform
+	class EXPORT Transform
 	{
 	public:
 		Transform();

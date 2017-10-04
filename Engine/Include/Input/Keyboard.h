@@ -24,7 +24,7 @@ namespace Engine {
 		vector<int> KeyList;
 
 		static Keyboard* Instance();
-		void ProcessSDLEvent(const SDL_Event& e);
+		void ProcessSDLEvent(SDL_Event& e);
 
 		KeyboardState* GetState();
 

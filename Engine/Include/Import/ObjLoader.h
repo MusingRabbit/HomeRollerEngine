@@ -1,6 +1,7 @@
 #pragma once
 #include "Render\ShapeData.h"
-#include "Math\Math.h"
+#include "Math\Vector3.h"
+#include "Math\Vector2.h"
 #include <string>
 #include <vector>
 

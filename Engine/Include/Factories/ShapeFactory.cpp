@@ -1,7 +1,5 @@
 #include "ShapeFactory.h"
 
-
-
 namespace Engine {
 
 	ShapeData ShapeFactory::MakeTriangle() {

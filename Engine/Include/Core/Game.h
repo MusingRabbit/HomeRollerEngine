@@ -10,7 +10,8 @@
 #include "Render\ShapeData.h"
 #include "Render\Mesh.h"
 #include "Render\Shader.h"
-#include "Math\Transform.h"
+#include "Math\Math.h"
+#include "Render\Camera.h"
 #include "Import\ObjLoader.h"
 
 namespace Engine {
@@ -31,6 +32,8 @@ namespace Engine {
 		GameTime m_gameTime;
 		InputController m_input;
 		Display* m_display;
+		Camera m_camera;
+		Mouse& m_mouse = Mouse::Instance();
 
 		bool m_bRunning;
 

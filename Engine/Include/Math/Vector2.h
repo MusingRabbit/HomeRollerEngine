@@ -1,93 +1,47 @@
 #pragma once
-
 #include "MathHelper.h"
+#include "Globals.h"
 
 namespace Engine {
-	struct Vector2 {
+
+	class EXPORT Vector2
+	{
+	public:
+
 		float x;
 		float y;
 
-		Vector2()
-		{
-			x = y = 0.0f;
-		}
+		Vector2();
 
-		Vector2(float x, float y)
-		{
-			x = x;
-			y = y;
-		}
+		Vector2(float x, float y);
 
-		Vector2(const Vector2& r)
-		{
-			x = r.x;
-			y = r.y;
-		}
+		Vector2(const Vector2& r);
 
-		float Length() {
-			return sqrtf((x*x) + (y*y));
-		}
+		Vector2 Normalise();
 
-		Vector2 Normalise() {
-			float length = Length();
-			return Vector2(x /= length, y /= length);
-		}
+		Vector2 Rotate(const float r);
 
-		Vector2 Rotate(const float r) {
-			double radii = ToRadians(r);
-			double cos = std::cos(radii);
-			double sin = std::sin(radii);
+		Vector2 Add(const Vector2& r);
 
-			float x = static_cast<float>(x * cos - y * sin);
-			float y = static_cast<float>(x * sin + y * cos);
+		Vector2 Add(const float r);
 
-			return Vector2(x,y);
-		}
+		Vector2 Sub(const Vector2& r);
 
-		float Dot(const Vector2& r) {
-			return (x * r.x) + y * r.y;
-		}
+		Vector2 Sub(const float r);
 
-		Vector2 Add(const Vector2& r) {
-			return Vector2(x + r.x, y + r.y);
-		}
+		Vector2 Mul(const Vector2& r);
 
-		Vector2 Add(const float r)
-		{
-			return Vector2(x + r, y + r);
-		}
+		Vector2 Mul(const float r);
 
-		Vector2 Sub(const Vector2& r) {
-			return Vector2(x - r.x, y - r.y);
-		}
+		Vector2 Div(const Vector2& r);
 
-		Vector2 Sub(const float r)
-		{
-			return Vector2(x - r, y - r);
-		}
+		Vector2 Div(const float r);
 
-		Vector2 Mul(const Vector2& r) {
-			return Vector2(x * r.x, y * r.y);
-		}
+		float Length();
 
-		Vector2 Mul(const float r)
-		{
-			return Vector2(x * r, y * r);
-		}
+		float Dot(const Vector2& r);
 
-		Vector2 Div(const Vector2& r) {
-			return Vector2(x / r.x, y / r.y);
-		}
-
-		Vector2 Div(const float r)
-		{
-			return Vector2(x / r, y / r);
-		}
-
-		std::string ToString() {
-			return "{" + std::to_string(x) + "," + std::to_string(y) + "}";
-		}
-
+		std::string ToString();
 	};
 
 

@@ -9,7 +9,6 @@
     <ClInclude Include="Include\Core\Display.h" />
     <ClInclude Include="Include\Math\Vector2.h" />
     <ClInclude Include="Include\Math\MathHelper.h" />
-    <ClInclude Include="Include\Math\Vector3.h" />
     <ClInclude Include="Include\Math\Matrix4.h" />
     <ClInclude Include="Include\Math\Quaternion.h" />
     <ClInclude Include="Include\Input\KeyboardState.h" />
@@ -29,7 +28,8 @@
     <ClInclude Include="Include\Math\Transform.h" />
     <ClInclude Include="Include\Util\StringHelper.h" />
     <ClInclude Include="Include\Import\ObjLoader.h" />
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Include\Render\Camera.h" />
+    <ClInclude Include="Include\Math\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Include\Core\GameTime.cpp" />
@@ -47,6 +47,11 @@
     <ClCompile Include="Include\Launcher.cpp" />
     <ClCompile Include="Include\Math\Transform.cpp" />
     <ClCompile Include="Include\Import\ObjLoader.cpp" />
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Include\Render\Camera.cpp" />
+    <ClCompile Include="Include\Math\Vector3.cpp" />
+    <ClCompile Include="Include\Math\Quaternion.cpp" />
+    <ClCompile Include="Include\Math\Matrix4.cpp" />
+    <ClCompile Include="Include\Math\Matrix3.cpp" />
+    <ClCompile Include="Include\Math\Vector2.cpp" />
   </ItemGroup>
 </Project>

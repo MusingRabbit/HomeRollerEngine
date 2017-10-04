@@ -1,169 +1,78 @@
 #pragma once
-
 #include "MathHelper.h"
 #include "Vector2.h"
+#include "Quaternion.h"
+#include "Globals.h"
 
 namespace Engine {
 
-	struct Vector3 
+	class EXPORT Vector3
 	{
+	public:
 		float x;
 		float y;
 		float z;
 
-		Vector3()
-		{
-			x = y = z = 0.0f;
-		}
+		Vector3();
+		Vector3(float xV, float yV, float zV);
+		Vector3(const Vector2& r);
+		Vector3(const Vector3& r);
 
-		Vector3(float xV, float yV, float zV)
-		{
-			x = xV;
-			y = yV;
-			z = zV;
-		}
+		float Length();
+		float Dot(const Vector3& r);
+		Vector3 Normalise();
+		Vector3 Cross(const Vector3& r) const;
+		Vector3 Add(const Vector3& r) const;
+		Vector3 Add(const float r) const;
+		Vector3 Sub(const Vector3& r) const;
+		Vector3 Sub(const float r) const;
+		Vector3 Mul(const Vector3& r) const;
+		Vector3 Mul(const float(&rhs)[3][3]) const;
+		Vector3 Mul(const float r) const;
+		Vector3 Div(const Vector3& r) const;
+		Vector3 Div(const float r) const;
+		Vector3 Rotate(float angle, const Vector3& axis) const;
+		Vector3 Rotate(const float r) const;
 
-		Vector3(const Vector2& r) {
-			x = r.x;
-			y = r.y;
-			z = 0.0f;
-		}
+		std::string ToString();
 
-		Vector3(const Vector3& r)
-		{
-			x = r.x;
-			y = r.y;
-			z = r.z;
-		}
+		const Vector3& operator=(const Vector3& rhs);
 
-		inline float Length() {
-			return sqrtf((x*x) + (y*y) + (z*z));
-		}
+		void operator -=(const Vector3& rhs);
+		void operator +=(const Vector3& rhs);
+		void operator *=(const Vector3& rhs);
+		void operator /=(const Vector3& rhs);
+		void operator -=(const float rhs);
 
-		inline Vector3 Normalise() {
-			float length = Length();
-			return Vector3(x /= length, y /= length, z /= length);
-		}
-
-		inline Vector3 Rotate(const float r) {
-			double radii = ToRadians(r);
-			double cos = std::cos(radii);
-			double sin = std::sin(radii);
-
-			return Vector3();
-		}
-
-		inline float Dot(const Vector3& r) {
-			return (x * r.x) +(y * r.y) + (z * r.z);
-		}
-
-		inline Vector3 Cross(const Vector3& r) {
-			float x_ = ((y * r.z) - (z * r.y));
-			float y_ = ((z * r.x) - (x * r.z));
-			float z_ = ((x * r.y) - (y * r.x));
-
-			return Vector3(x_, y_, z_);
-		}
-
-		inline Vector3 Add(const Vector3& r) {
-			return Vector3(x + r.x, y + r.y, z + r.z);
-		}
-
-		inline Vector3 Add(const float r)
-		{
-			return Vector3(x + r, y + r, z + r);
-		}
-
-		inline Vector3 Sub(const Vector3& r) {
-			return Vector3(x - r.x, y - r.y, z - r.z);
-		}
-
-		inline Vector3 Sub(const float r)
-		{
-			return Vector3(x - r, y - r, z - r);
-		}
-
-		inline Vector3 Mul(const Vector3& r) {
-			return Vector3(x * r.x, y * r.y, z * r.z);
-		}
-
-		inline Vector3 Mul(const float r)
-		{
-			return Vector3(x * r, y * r, z * r);
-		}
-
-		inline Vector3 Div(const Vector3& r) {
-			return Vector3(x / r.x, y / r.y, z / r.z);
-		}
-
-		inline Vector3 Div(const float r)
-		{
-			return Vector3(x / r, y / r, z / r);
-		}
-
-		std::string ToString() {
-			return "{" + std::to_string(x) + "," + std::to_string(y) + "}";
-		}
-
-		inline const Vector3& operator=(const Vector3& rhs) {
-			x = rhs.x;
-			y = rhs.y;
-			z = rhs.z;
-
-			return *this;
-		}
+		Vector3 operator *(const Vector3& rhs) const;
+		Vector3 operator *(const float(&rhs)[3][3]) const;
+		Vector3 operator *(const float rhs) const;
+		Vector3 operator -(const float rhs) const;
+		Vector3 operator -(const Vector3& rhs) const;
+		Vector3 operator +(const Vector3& rhs) const;
+		Vector3 operator /(const Vector3& rhs) const;
 	};
 
 
-	inline Vector3 operator+(Vector3 lhs, const Vector3& rhs) {
-		return lhs.Add(rhs);
-	}
 
-	inline Vector3 operator-(Vector3 lhs, const Vector3& rhs) {
-		return lhs.Sub(rhs);
-	}
 
-	inline Vector3 operator-(Vector3 lhs, const float rhs) {
-		return lhs.Sub(rhs);
-	}
 
-	inline Vector3 operator*(Vector3 lhs, const Vector3& rhs) {
-		return lhs.Mul(rhs);
-	}
 
-	inline Vector3 operator/(Vector3 lhs, const Vector3& rhs) {
-		return lhs.Div(rhs);
-	}
 
-	inline void operator-=(Vector3 lhs, const Vector3& rhs) {
-		lhs.x -= rhs.x;
-		lhs.y -= rhs.y;
-		lhs.z -= rhs.z;
-	}
 
-	inline void operator-=(Vector3 lhs, const float rhs) {
-		lhs.x -= rhs;
-		lhs.y -= rhs;
-		lhs.z -= rhs;
-	}
 
-	inline void operator+=(Vector3 lhs, const Vector3& rhs) {
-		lhs.x += rhs.x;
-		lhs.y += rhs.y;
-		lhs.z += rhs.z;
-	}
 
-	inline void operator*=(Vector3 lhs, const Vector3& rhs) {
-		Vector3 result = lhs.Mul(rhs);
-		lhs.x = result.x;
-		lhs.y = result.y;
-		lhs.z = result.z;
-	}
 
-	inline void operator/=(Vector3 lhs, const Vector3& rhs) {
-		Vector3 result = lhs.Div(rhs);
-		lhs.x = result.x;
-		lhs.y = result.y;
-		lhs.z = result.z;
-	}
+
+
+
+
+
+
+
+
+
+
+
+
 }

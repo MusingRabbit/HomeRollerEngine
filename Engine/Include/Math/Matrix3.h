@@ -1,42 +1,35 @@
 #pragma once
-#include "MathHelper.h"
+#include "Matrix4.h"
+#include "Globals.h"
 
 namespace Engine {
 
-	struct Matrix3
+	class EXPORT Matrix3
 	{
+	public:
 		static const int iCount = 3;
-		float data[iCount][iCount];
-
-		Matrix3()
-		{
-
-		}
+		float m[iCount][iCount];
 
 		static Matrix3 GetIdentity() {
 			Matrix3 result;
 			for (int x = 0; x < iCount; x++) {
 				for (int y = 0; y < iCount; y++) {
-					result.data[x][y] = (x == y) ? 1.0f : 0.0f;
+					result.m[x][y] = (x == y) ? 1.0f : 0.0f;
 				}
 			}
 			return result;
 		}
 
-		inline Matrix3 Mul(const Matrix3& r) {
-			Matrix3 result;
+		Matrix3();
+		Matrix3(const float(&rhs)[3][3]);
+		Matrix3(Matrix4& value);
 
-			for (int x = 0; x < iCount; x++) {
-				for (int y = 0; y < iCount; y++) {
-					data[x][y] =
-						(
-							data[x][0] * r.data[0][y] +
-							data[x][1] * r.data[1][y] +
-							data[x][2] * r.data[2][y]);
-				}
-			}
+		Matrix3 Mul(const float(&rhs)[3][3]);
+		Matrix3 Mul(const Matrix3& rhs);
+		Vector3 Mul(const Vector3& rhs);
 
-			return result;
-		}
+		Matrix3 operator* (const Matrix3& rhs);
+		Matrix3 operator*= (const Matrix3& rhs);
+		Vector3 operator* (const Vector3& rhs);
 	};
 }
